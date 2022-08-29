@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Hardware.Info" Version="10.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Management" Version="6.0.0" />
     <PackageReference Include="WPF-UI" Version="2.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
@@ -35,9 +36,15 @@
   <ItemGroup>
     <Folder Include="Controls" />
     <Folder Include="Define\" />
+    <Folder Include="Threads\" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Settings\AppSettings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppSettings.settings</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -46,6 +53,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Settings\AppSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AppSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

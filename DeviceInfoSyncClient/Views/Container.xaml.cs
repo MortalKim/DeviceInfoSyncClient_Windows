@@ -3,13 +3,12 @@
 // Copyright (c) 2022 MortalKim
 // Date: 2022-8-29
 
-using DeviceInfoSyncClient.WMI;
-using Microsoft.VisualBasic;
+using DeviceInfoSyncClient.Helpers;
 using System;
 using System.Diagnostics;
+using System.Runtime.Serialization.Json;
 using System.Windows;
 using System.Windows.Controls;
-using Wpf.Ui.Common;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
 
@@ -20,6 +19,8 @@ namespace DeviceInfoSyncClient.Views
     /// </summary>
     public partial class Container : INavigationWindow
     {
+        TransmissionHelpers transmissionHelpers;
+
         public ViewModels.ContainerViewModel ViewModel
         {
             get;
@@ -39,10 +40,19 @@ namespace DeviceInfoSyncClient.Views
             //handle closing event
             this.Closing += Window_Closing;
 
-            var bios = new Bios();
-            var mem = new RAM();
-            Debug.Print("ces" + bios.ToString());
             WindowState = WindowState.Minimized;
+
+            SystemInfoHelper.Instance.Start(3, SystemInfoDelegate);
+            transmissionHelpers = new TransmissionHelpers("127.0.0.1", 1024);
+        }
+
+        public void SystemInfoDelegate()
+        {
+
+            var a = Newtonsoft.Json.JsonConvert.SerializeObject(SystemInfoHelper.Instance);
+            Debug.Print(a);
+            
+            transmissionHelpers?.sendMsg(a);
         }
 
         #region INavigationWindow methods

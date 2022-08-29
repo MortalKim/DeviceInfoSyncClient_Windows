@@ -26,12 +26,19 @@ namespace DeviceInfoSyncClient.WMI
                     d => d["DeviceID"].ToString(), // device id
                     d => d);*/
             
-            DiskDrives = WMIQuery.WMIExecQuery(WMIQuery.Disk.DiskDriveQuery)
-                .OrderBy(d => d["Index"].ToString()) // disk index
-                .ToArray();
+            //DiskDrives = WMIQuery.WMIExecQuery(WMIQuery.Disk.DiskDriveQuery)
+            //    .OrderBy(d => d["Index"].ToString()) // disk index
+            //    .ToArray();
         }
 
-        public ManagementBaseObject[] DiskDrives { get; }
+        public ManagementBaseObject[] DiskDrives
+        {
+            get {
+                return WMIQuery.WMIExecQuery(WMIQuery.Disk.DiskDriveQuery)
+               .OrderBy(d => d["Index"].ToString()) // disk index
+               .ToArray();
+            }
+        }
         /*public Dictionary<int, string[]> DiskPartitions { get; }
         public Dictionary<string, ManagementBaseObject> LogicalDisks { get; }*/
     }

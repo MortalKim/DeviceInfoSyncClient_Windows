@@ -4,14 +4,24 @@
 // Date: 2022-8-29
 
 using System;
+using System.Diagnostics;
 using DeviceInfoSyncClient.Define;
 
 namespace DeviceInfoSyncClient.WMI
 {
     public class CPU
     {
+        private readonly PerformanceCounter cpuCounter;
+
         public CPU()
         {
+            cpuCounter = new PerformanceCounter
+            {
+                CategoryName = "Processor",
+                CounterName = "% Processor Time",
+                InstanceName = "_Total"
+            };
+
             var iter = WMIQuery.WMIExecQuery(WMIQuery.CPU.Query).GetEnumerator();
             while (iter.MoveNext())
             {
@@ -23,6 +33,14 @@ namespace DeviceInfoSyncClient.WMI
                 L3CacheSize = Convert.ToInt32(wmi[WMIQuery.CPU.L3CacheSize]);
                 CoreCount = Convert.ToInt32(wmi[WMIQuery.CPU.NumberOfCores]);
                 ThreadCount = Convert.ToInt32(wmi[WMIQuery.CPU.ThreadCount]);
+            }
+        }
+        public Int32 Usage
+        {
+            get
+            {
+                Double percent = cpuCounter.NextValue();
+                return Convert.ToInt32(percent);
             }
         }
 

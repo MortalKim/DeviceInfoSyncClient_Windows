@@ -3,6 +3,7 @@
 // Copyright (c) 2022 MortalKim
 // Date: 2022-8-29
 
+using DeviceInfoSyncClient.Helpers;
 using DeviceInfoSyncClient.Models;
 using DeviceInfoSyncClient.Services;
 using Microsoft.Extensions.Configuration;
@@ -88,7 +89,7 @@ namespace DeviceInfoSyncClient
         private async void OnExit(object sender, ExitEventArgs e)
         {
             await _host.StopAsync();
-
+            SystemInfoHelper.Instance.Stop();
             _host.Dispose();
         }
 

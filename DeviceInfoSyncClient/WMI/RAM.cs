@@ -35,12 +35,12 @@ namespace DeviceInfoSyncClient.WMI
                 }
             }
 
-            double available = MemoryAvailable / 1024.0 / 1024.0 / 1014.0;                          //可用内存
-            double used = (PhysicalMemory - MemoryAvailable) / 1024.0 / 1024.0 / 1024.0;    //已用内存
-            double physicalMemory = PhysicalMemory / 1024.0 / 1024.0 / 1024.0;                      //物理内存总量
-            Debug.Print("MemoryAvailable：" + String.Format("{0:f2}GB", available));
-            Debug.Print("PhysicalMemory：" + String.Format("{0:f2}GB", physicalMemory));
-            Debug.Print("Pre：" + String.Format("{0:f2}/{1:f2}GB({2:f0}%)", used, physicalMemory, (PhysicalMemory - MemoryAvailable) * 100.0 / PhysicalMemory));
+            //double available = MemoryAvailable / 1024.0 / 1024.0 / 1014.0;
+            //double used = (PhysicalMemory - MemoryAvailable) / 1024.0 / 1024.0 / 1024.0;
+            //double physicalMemory = PhysicalMemory / 1024.0 / 1024.0 / 1024.0;
+            //Debug.Print("MemoryAvailable：" + String.Format("{0:f2}GB", available));
+            //Debug.Print("PhysicalMemory：" + String.Format("{0:f2}GB", physicalMemory));
+            //Debug.Print("Pre：" + String.Format("{0:f2}/{1:f2}GB({2:f0}%)", used, physicalMemory, (PhysicalMemory - MemoryAvailable) * 100.0 / PhysicalMemory));
         }
 
         public UInt64 PysicalSize { get; private set; }
