@@ -47,7 +47,6 @@ namespace DeviceInfoSyncClient.Helpers
         public GPU GPU = new GPU();
         //can update by get now
         public RAM RAM = new RAM();
-        [JsonIgnore]
         public Disk Disk = new Disk();
         public CPU CPU = new CPU();
 

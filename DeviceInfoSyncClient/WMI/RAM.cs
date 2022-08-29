@@ -43,10 +43,6 @@ namespace DeviceInfoSyncClient.WMI
             //Debug.Print("Pre：" + String.Format("{0:f2}/{1:f2}GB({2:f0}%)", used, physicalMemory, (PhysicalMemory - MemoryAvailable) * 100.0 / PhysicalMemory));
         }
 
-        public UInt64 PysicalSize { get; private set; }
-
-        public UInt64 VirtualSize { get; private set; }
-
         public long AvailablePhysicalSize => MemoryAvailable;
 
         //public UInt64 AvailableVirtualSize => hardwareInfo.MemoryStatus.AvailableVirtual;
@@ -56,6 +52,18 @@ namespace DeviceInfoSyncClient.WMI
         public String Voltage { get; private set; }
 
         public String Manufacturer { get; private set; }
+
+        public long used { get
+            {
+                return (PhysicalMemory - MemoryAvailable);
+            } 
+        }
+
+        public double usage { get
+            {
+                return used * 100.0 / PhysicalMemory;
+            }
+        }
 
         #region MemoryAvailable
 

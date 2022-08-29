@@ -4,6 +4,7 @@
 // Date: 2022-8-29
 
 using DeviceInfoSyncClient.Helpers;
+using DeviceInfoSyncClient.WMI;
 using System;
 using System.Diagnostics;
 using System.Runtime.Serialization.Json;
@@ -48,11 +49,9 @@ namespace DeviceInfoSyncClient.Views
 
         public void SystemInfoDelegate()
         {
-
             var a = Newtonsoft.Json.JsonConvert.SerializeObject(SystemInfoHelper.Instance);
-            Debug.Print(a);
-            
             transmissionHelpers?.sendMsg(a);
+            Debug.Print(a);
         }
 
         #region INavigationWindow methods
