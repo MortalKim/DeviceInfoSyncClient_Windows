@@ -1,0 +1,19 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+// Project: %Project%
+// FileName: %FileName%
+// Copyright (c) 2022 MortalKim
+// Date: %CurrentYear%-%CurrentMonth%-%CurrentDay%
+
+extensions: .aspx .ascx
+<%-- 
+Copyright (c) 2011 rubicon IT GmbH 
+--%>
+
+extensions: .vb
+'Sample license text.
+
+extensions:  .xml .config .xsd
+<!--
+Sample license text.
+-->
