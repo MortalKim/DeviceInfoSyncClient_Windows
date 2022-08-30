@@ -43,7 +43,6 @@
                     <TextBlock FontSize="16" Text="WPF UI - DeviceInfoSyncClient" />
                     <TextBlock
                         FontSize="10"
-                        Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                         Text="Fluent design" />
                 </StackPanel>
 

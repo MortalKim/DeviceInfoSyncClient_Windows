@@ -4,10 +4,8 @@
 // Date: 2022-8-29
 
 using DeviceInfoSyncClient.Helpers;
-using DeviceInfoSyncClient.WMI;
 using System;
 using System.Diagnostics;
-using System.Runtime.Serialization.Json;
 using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls.Interfaces;
@@ -44,13 +42,14 @@ namespace DeviceInfoSyncClient.Views
             WindowState = WindowState.Minimized;
 
             SystemInfoHelper.Instance.Start(3, SystemInfoDelegate);
-            transmissionHelpers = new TransmissionHelpers("127.0.0.1", 1024);
+            transmissionHelpers = new TransmissionHelpers("127.0.0.1", 777);
+            
         }
 
         public void SystemInfoDelegate()
         {
             var a = Newtonsoft.Json.JsonConvert.SerializeObject(SystemInfoHelper.Instance);
-            transmissionHelpers?.sendMsg(a);
+            transmissionHelpers?.SendMsg(a);
             Debug.Print(a);
         }
 
@@ -85,7 +84,7 @@ namespace DeviceInfoSyncClient.Views
             this.Hide();
         }
         
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
         {
             this.Hide();
             e.Cancel = true;

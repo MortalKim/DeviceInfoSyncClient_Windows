@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:WPFMultiLanguage.Resources.Language">
+    <system:String x:Key="Testing">Testing...</system:String>
+    <system:String x:Key="NotIp">Not a IP address!</system:String>
+    <system:String x:Key="NoResponse">No response, Check ip and port!</system:String>
+    <system:String x:Key="WrongTarget">Wrong Target, Check ip and port!</system:String>
+    <system:String x:Key="TargetAvailable">Target Available, It shoud work.</system:String>
+</ResourceDictionary>

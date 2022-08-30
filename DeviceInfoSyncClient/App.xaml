@@ -9,6 +9,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <!--Default Language File-->
+                <ResourceDictionary Source="/DeviceInfoSyncClient;component/Resources/en_us.xaml"/>
                 <ui:ThemesDictionary Theme="Dark" />
                 <ui:ControlsDictionary />
             </ResourceDictionary.MergedDictionaries>
