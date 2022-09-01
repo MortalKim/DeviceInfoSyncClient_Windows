@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Wpf.Ui.Controls.Interfaces;
 using Wpf.Ui.Mvvm.Contracts;
+using MenuItem = Wpf.Ui.Controls.MenuItem;
 
 namespace DeviceInfoSyncClient.Views
 {
@@ -29,7 +30,6 @@ namespace DeviceInfoSyncClient.Views
         {
             ViewModel = viewModel;
             DataContext = this;
-
             InitializeComponent();
             
             SetPageService(pageService);
@@ -38,9 +38,6 @@ namespace DeviceInfoSyncClient.Views
 
             //handle closing event
             this.Closing += Window_Closing;
-
-            WindowState = WindowState.Minimized;
-
             SystemInfoHelper.Instance.Start(3, SystemInfoDelegate);
             transmissionHelpers = new TransmissionHelpers("127.0.0.1", 777);
             
@@ -102,6 +99,20 @@ namespace DeviceInfoSyncClient.Views
                     Application.Current.Shutdown();
                     break;
             }
+        }
+
+        private void NotifyIcon_LeftClick(Wpf.Ui.Controls.NotifyIcon sender, RoutedEventArgs e)
+        {
+            this.ShowInTaskbar = true;
+            //need run show twice to make it work.... wired
+            this.Visibility = Visibility.Visible;
+            this.WindowState = WindowState.Normal;
+            this.Show();
+
+            this.WindowState = WindowState.Minimized;
+            this.WindowState = WindowState.Normal;
+            this.Show();
+
         }
     }
 }

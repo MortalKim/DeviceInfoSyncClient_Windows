@@ -10,6 +10,7 @@
     Title="{Binding ViewModel.ApplicationTitle, Mode=OneWay}"
     Width="1100"
     Height="650"
+    ShowInTaskbar="False" WindowState="Minimized" Visibility="Hidden"
     d:DataContext="{d:DesignInstance local:Container,
                                      IsDesignTimeCreatable=True}"
     ExtendsContentIntoTitleBar="True"
@@ -94,6 +95,7 @@
                     FocusOnLeftClick="True"
                     Icon="pack://application:,,,/Assets/applicationIcon-256.png"
                     MenuOnRightClick="True"
+                    LeftClick="NotifyIcon_LeftClick"
                     TooltipText="DeviceInfoSyncClient">
                     <ui:NotifyIcon.Menu>
                         <ContextMenu>
