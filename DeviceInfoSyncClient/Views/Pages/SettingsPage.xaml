@@ -24,7 +24,8 @@
             FontSize="20"
             FontWeight="Medium"
             Text="Server Setiings" />
-        <Grid Width="200" HorizontalAlignment="Left"  Margin="0,12,0,0">
+        <CheckBox Margin="0,12,0,0" Click="CheckBox_Click">Enable Transmission</CheckBox>
+        <Grid Width="200" HorizontalAlignment="Left"  Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
@@ -43,8 +44,8 @@
 
         <StackPanel
             Orientation="Horizontal"  Margin="0,12,0,0">
-            <ui:Button Command="{Binding ViewModel.TestConnectionButtonClickCommand, Mode=OneWay}">TestConnection</ui:Button>
-            <ui:Button  Margin="12,0,0,0">Confirm</ui:Button>
+            <ui:Button Command="{Binding ViewModel.TestConnectionButtonClickCommand}">TestConnection</ui:Button>
+            <ui:Button  Margin="12,0,0,0" Command="{Binding ViewModel.ConfirmButtonClickCommand}">Confirm</ui:Button>
         </StackPanel>
         
 

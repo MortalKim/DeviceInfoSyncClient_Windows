@@ -11,6 +11,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Wpf.Ui.Common.Interfaces;
 
 namespace DeviceInfoSyncClient.Views.Pages
@@ -33,7 +34,7 @@ namespace DeviceInfoSyncClient.Views.Pages
             InitializeComponent();
                
             //Register for message
-            Messenger.Default.Register<DialogInfo>(this, "ViewAlert", ShowReceiveInfo);
+            Messenger.Default.Register<DialogInfo>(this, Constant.SHOW_DIALOG, ShowReceiveInfo);
             this.Unloaded += (sender, e) => Messenger.Default.Unregister(this);
         }
 
@@ -59,6 +60,13 @@ namespace DeviceInfoSyncClient.Views.Pages
         private void RootDialog_ButtonRightClick(object sender, System.Windows.RoutedEventArgs e)
         {
             ViewModel.DialogRightButtonClick();
+        }
+
+        private void CheckBox_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            Debug.WriteLine("checkBox:" + checkBox.IsChecked);
+            ViewModel.EnableTransmissionCheck(checkBox.IsChecked);
         }
     }
 }

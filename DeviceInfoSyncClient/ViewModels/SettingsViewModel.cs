@@ -15,8 +15,6 @@ using GalaSoft.MvvmLight.Messaging;
 using DeviceInfoSyncClient.Models;
 using System.Windows;
 using System.Threading;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Threading;
 
 namespace DeviceInfoSyncClient.ViewModels
 {
@@ -33,9 +31,9 @@ namespace DeviceInfoSyncClient.ViewModels
         private Wpf.Ui.Appearance.ThemeType _currentTheme = Wpf.Ui.Appearance.ThemeType.Unknown;
 
         [ObservableProperty]
-        private string _ip = String.Empty;
+        private string _ip = Properties.Settings.Default.ServerIp;
         [ObservableProperty]
-        private int _port = 1024;
+        private int _port = Properties.Settings.Default.ServerPort;
         [ObservableProperty]
         private string _dialogButtonText = "Cancel";
         [ObservableProperty]
@@ -76,7 +74,7 @@ namespace DeviceInfoSyncClient.ViewModels
             if (isIP)
             {
                 //show waiting dialog
-                Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("Testing"), "Cancel"), "ViewAlert");
+                Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("Testing"), "Cancel"), Constant.SHOW_DIALOG);
 
                 t = new TransmissionHelpers(Ip, Port, 1234);
 
@@ -89,11 +87,11 @@ namespace DeviceInfoSyncClient.ViewModels
                     if (res.Equals("Yes"))
                     {
                         success = true;
-                        Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("TargetAvailable"), "OK"), "ViewAlert");
+                        Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("TargetAvailable"), "OK"), Constant.SHOW_DIALOG);
                     }
                     else
                     {
-                        Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("WrongTarget"), "OK"), "ViewAlert");
+                        Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("WrongTarget"), "OK"), Constant.SHOW_DIALOG);
                     }
                 });
                 
@@ -107,7 +105,7 @@ namespace DeviceInfoSyncClient.ViewModels
                         // if failed, no respose
                         if (!success)
                         {
-                            Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("NoResponse"), "OK"), "ViewAlert");
+                            Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("NoResponse"), "OK"), Constant.SHOW_DIALOG);
                         }
                     }
                     catch (ThreadInterruptedException e)
@@ -119,17 +117,44 @@ namespace DeviceInfoSyncClient.ViewModels
             }
             else
             {
-                Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("NotIp"), "OK"), "ViewAlert");
+                Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(true, (string)Application.Current.FindResource("NotIp"), "OK"), Constant.SHOW_DIALOG);
             }
         }
 
+        /// <summary>
+        /// TestConnection Command
+        /// </summary>
+        [ICommand]
+        private void ConfirmButtonClick()
+        {
+            IPAddress? iPAddress;
+            //check it a ip address
+            var isIP = System.Net.IPAddress.TryParse(Ip, out iPAddress);
+            if (isIP)
+            {
+                Properties.Settings.Default.ServerIp = Ip;
+                Properties.Settings.Default.ServerPort = Port;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Messenger.Default.Send<DialogInfo>(new DialogInfo(true, (string)Application.Current.FindResource("NotIp"), "OK"), Constant.SHOW_DIALOG);
+            }
+        }
+
+        public void EnableTransmissionCheck(bool? isChecked)
+        {
+            Properties.Settings.Default.EnableTransmission = (bool)isChecked;
+            Properties.Settings.Default.Save();
+            Messenger.Default.Send<bool>((bool)isChecked, Constant.ENABLE_TRANSMISSION);
+        }
 
         public void DialogRightButtonClick()
         {
             //Close Test Connection
             t?.Close();
             waitingThread?.Interrupt();
-            Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(false, "", ""), "ViewAlert");
+            Messenger.Default.Send<DialogInfo>(new Models.DialogInfo(false, "", ""), Constant.SHOW_DIALOG);
         }
 
         [ICommand]

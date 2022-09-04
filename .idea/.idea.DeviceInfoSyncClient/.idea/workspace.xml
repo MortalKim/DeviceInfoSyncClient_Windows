@@ -4,13 +4,15 @@
     <projectFile>DeviceInfoSync/DeviceInfoSyncClient.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a3395cd-d744-4162-8eaf-14bfc46c7965" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceInfoSyncClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceInfoSyncClient/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6a3395cd-d744-4162-8eaf-14bfc46c7965" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://G:/WPF Projects/DeviceInfoSync_Windows/DeviceInfoSyncClient/Services/ApplicationHostService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://G:/WPF Projects/DeviceInfoSync_Windows/DeviceInfoSyncClient/Views/Container.xaml.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -63,7 +65,16 @@
       <workItem from="1662253981256" duration="93000" />
       <workItem from="1662254118383" duration="41000" />
       <workItem from="1662254252373" duration="625000" />
+      <workItem from="1662256005504" duration="80000" />
     </task>
+    <task id="LOCAL-00001" summary=":zap: Move get system info into ApplicationHost">
+      <created>1662256077827</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1662256077827</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,5 +95,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value=":zap: Move get system info into ApplicationHost" />
+    <option name="LAST_COMMIT_MESSAGE" value=":zap: Move get system info into ApplicationHost" />
   </component>
 </project>

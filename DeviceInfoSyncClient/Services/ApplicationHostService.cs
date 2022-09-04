@@ -4,7 +4,10 @@
 // Date: 2022-8-29
 
 using DeviceInfoSyncClient.Helpers;
+using DeviceInfoSyncClient.Models;
 using DeviceInfoSyncClient.Views;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Diagnostics;
@@ -13,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Wpf.Ui.Mvvm.Contracts;
+using Wpf.Ui.Mvvm.Interfaces;
 using static DeviceInfoSyncClient.Helpers.SystemInfoHelper;
 
 namespace DeviceInfoSyncClient.Services
@@ -25,15 +29,15 @@ namespace DeviceInfoSyncClient.Services
         private readonly IServiceProvider _serviceProvider;
         private INavigationWindow _navigationWindow;
 
-        TransmissionHelpers transmissionHelpers;
+        TransmissionHelpers? transmissionHelpers;
 
         public ApplicationHostService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
 
             SystemInfoHelper.Instance.Start(3, SystemInfoDelegate);
-            transmissionHelpers = new TransmissionHelpers("127.0.0.1", 777);
-
+            Messenger.Default.Register<bool>(this, Constant.ENABLE_TRANSMISSION, EnableTransmission);
+            EnableTransmission(Properties.Settings.Default.EnableTransmission);
         }
 
         public void SystemInfoDelegate()
@@ -41,6 +45,21 @@ namespace DeviceInfoSyncClient.Services
             var a = Newtonsoft.Json.JsonConvert.SerializeObject(SystemInfoHelper.Instance);
             transmissionHelpers?.SendMsg(a);
             Debug.Print(a);
+        }
+
+        private void EnableTransmission(bool msg)
+        {
+            transmissionHelpers?.Close();
+            if (msg)
+            {
+                var ip = Properties.Settings.Default.ServerIp;
+                var port = Properties.Settings.Default.ServerPort;
+                transmissionHelpers = new TransmissionHelpers(ip, port);
+            }
+            else
+            {
+                transmissionHelpers = null;
+            }
         }
 
         /// <summary>
@@ -59,6 +78,7 @@ namespace DeviceInfoSyncClient.Services
         public async Task StopAsync(CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
+            Messenger.Default.Unregister(this);
         }
 
         /// <summary>
