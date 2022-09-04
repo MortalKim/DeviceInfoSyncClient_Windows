@@ -4,7 +4,9 @@
     <projectFile>DeviceInfoSync/DeviceInfoSyncClient.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a3395cd-d744-4162-8eaf-14bfc46c7965" name="Changes" comment="" />
+    <list default="true" id="6a3395cd-d744-4162-8eaf-14bfc46c7965" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DeviceInfoSyncClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeviceInfoSyncClient/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,19 +32,19 @@
 }</component>
   <component name="RunManager">
     <configuration name="DeviceInfoSyncClient" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/DeviceInfoSyncClient/bin/Debug/net6.0-windows/DeviceInfoSyncClient.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/DeviceInfoSyncClient/bin/Debug/net6.0-windows" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/DeviceInfoSync/DeviceInfoSyncClient.csproj" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/DeviceInfoSyncClient/DeviceInfoSyncClient.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net6.0-windows" />
       <method v="2">
         <option name="Build" />
       </method>
@@ -58,13 +60,28 @@
       <updated>1661740843016</updated>
       <workItem from="1661740844057" duration="65000" />
       <workItem from="1661742097085" duration="99000" />
+      <workItem from="1662253981256" duration="93000" />
+      <workItem from="1662254118383" duration="41000" />
+      <workItem from="1662254252373" duration="625000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

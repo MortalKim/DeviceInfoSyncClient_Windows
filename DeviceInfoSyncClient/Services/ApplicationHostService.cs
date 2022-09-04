@@ -3,14 +3,17 @@
 // Copyright (c) 2022 MortalKim
 // Date: 2022-8-29
 
+using DeviceInfoSyncClient.Helpers;
 using DeviceInfoSyncClient.Views;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Wpf.Ui.Mvvm.Contracts;
+using static DeviceInfoSyncClient.Helpers.SystemInfoHelper;
 
 namespace DeviceInfoSyncClient.Services
 {
@@ -22,9 +25,22 @@ namespace DeviceInfoSyncClient.Services
         private readonly IServiceProvider _serviceProvider;
         private INavigationWindow _navigationWindow;
 
+        TransmissionHelpers transmissionHelpers;
+
         public ApplicationHostService(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
+
+            SystemInfoHelper.Instance.Start(3, SystemInfoDelegate);
+            transmissionHelpers = new TransmissionHelpers("127.0.0.1", 777);
+
+        }
+
+        public void SystemInfoDelegate()
+        {
+            var a = Newtonsoft.Json.JsonConvert.SerializeObject(SystemInfoHelper.Instance);
+            transmissionHelpers?.SendMsg(a);
+            Debug.Print(a);
         }
 
         /// <summary>

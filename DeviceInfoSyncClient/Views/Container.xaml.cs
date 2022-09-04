@@ -19,7 +19,7 @@ namespace DeviceInfoSyncClient.Views
     /// </summary>
     public partial class Container : INavigationWindow
     {
-        TransmissionHelpers transmissionHelpers;
+        
 
         public ViewModels.ContainerViewModel ViewModel
         {
@@ -38,16 +38,7 @@ namespace DeviceInfoSyncClient.Views
 
             //handle closing event
             this.Closing += Window_Closing;
-            SystemInfoHelper.Instance.Start(3, SystemInfoDelegate);
-            transmissionHelpers = new TransmissionHelpers("127.0.0.1", 777);
             
-        }
-
-        public void SystemInfoDelegate()
-        {
-            var a = Newtonsoft.Json.JsonConvert.SerializeObject(SystemInfoHelper.Instance);
-            transmissionHelpers?.SendMsg(a);
-            Debug.Print(a);
         }
 
         #region INavigationWindow methods
